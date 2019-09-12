@@ -1,0 +1,34 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: promop
+spec:
+  releaseName: promop
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: prometheus-operator
+    version: 6.11.0
+  values:
+    kubelet:
+      serviceMonitor:
+        https: false
+    kubeEtcd:
+      service:
+        selector:
+          k8s-app: null
+          component: etcd
+    grafana:
+      sidecar:
+        dashboards:
+          enabled: true
+          searchNamespace: ALL
+    prometheus:
+      prometheusSpec:
+        ruleNamespaceSelector:
+          any: true
+        serviceMonitorSelector:
+          monitoring: promop
+        serviceMonitorNamespaceSelector:
+          any: true
+    prometheusOperator:
+      createCustomResource: true
