@@ -27,6 +27,7 @@ helm upgrade -i flux --wait \
 --set git.pollInterval=15s \
 --set registry.pollInterval=15s \
 --set helmOperator.chartsSyncInterval=15s \
+--set syncGarbageCollection.enabled=true \
 --namespace flux \
 -f flux-values.yaml \
 fluxcd/flux
