@@ -26,9 +26,9 @@ spec:
     matchLabels:
       app: demohttp-backend
   endpoints:
-    - port: http
-      path: "/metrics"
-      interval: 15s
+  - port: http
+    path: "/metrics"
+    interval: 15s
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -36,6 +36,8 @@ metadata:
   name: demohttp-backend
   labels:
     app: demohttp-backend
+  annotations:
+    fluxcd.io/automated: 'true'
 spec:
   replicas: 1
   selector:
