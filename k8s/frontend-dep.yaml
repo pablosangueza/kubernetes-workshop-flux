@@ -31,9 +31,10 @@ spec:
     spec:
       containers:
         - name: demohttp-frontend
-          image: jwenz723/demohttp-frontend:026fbb8-dirty
+          image: jwenz723/demohttp-frontend:flux-sync-3-gd84c559-dirty
           args:
             - "-addr=:8080"
             - "-backend-addr=http://demohttp-backend:8080"
           ports:
-            - containerPort: 8080
+          - name: http
+            containerPort: 8080

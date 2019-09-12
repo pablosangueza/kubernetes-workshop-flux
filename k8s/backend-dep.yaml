@@ -8,9 +8,27 @@ metadata:
 spec:
   ports:
   - port: 8080
-    name: demohttp-backend
+    targetPort: http
+    name: http
   selector:
     app: demohttp-backend
+---
+# This tells the prometheus operator instance to monitor this service
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: demo-http-backend
+  labels:
+    app: demohttp-backend
+    monitoring: promop
+spec:
+  selector:
+    matchLabels:
+      app: demohttp-backend
+  endpoints:
+    - port: http
+      path: "/metrics"
+      interval: 15s
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,8 +50,9 @@ spec:
     spec:
       containers:
       - name: demohttp-backend
-        image: jwenz723/demohttp-backend:d2742ba-dirty
+        image: jwenz723/demohttp-backend:flux-sync-3-gd84c559-dirty
         args:
         - "-addr=:8080"
         ports:
-        - containerPort: 8080
+        - name: http
+          containerPort: 8080
