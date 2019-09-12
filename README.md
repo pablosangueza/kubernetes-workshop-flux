@@ -18,6 +18,25 @@ This repo contains a basic example of how flux can be used to deploy kubernetes 
 1. Click Add Key
 1. Watch the flux logs to see if it is working using the command: `kubectl logs -n flux -l app=flux -f`
 
+## Modify the deployment
+
+Assuming that you made some changes to the [apps](https://github.com/jwenz723/kubernetes-workshop-demohttp), you should
+make changes in this repo to make use of your newly created docker images.
+
+1. Modify [backend-dep.yaml](/k8s/backend-dep.yaml) to point at your docker image (change this line: `image: jwenz723/demohttp-backend:flux-sync-3-gd84c559-dirty`)
+1. Modify [frontend-dep.yaml](/k8s/frontend-dep.yaml) to point at your docker image (change this line: `image: jwenz723/demohttp-frontend:flux-sync-3-gd84c559-dirty`)
+1. Make a new git commit and push your changes up to github:
+    
+    ```bash
+   git add .
+   git commit -m "updated docker image path"
+   git push origin master 
+   ```
+   
+1. Now watch your minikube cluster to see your new image deployed: `kubectl get pods -w` (you should see the `AGE` value 
+in the right column drop to a value less than 10s when your new pod is created)
+
+
 ## Feeling adventurous?
 
 Try adding a deployment of your application of choice into the repo and have it deployed through flux. You can define yaml
