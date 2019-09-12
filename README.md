@@ -18,5 +18,8 @@ This repo contains a basic example of how flux can be used to deploy kubernetes 
 1. Click Add Key
 1. Watch the flux logs to see if it is working using the command: `kubectl logs -n flux -l app=flux -f`
 
-## Add a helm chart into the deployment
+## Feeling adventurous?
+
+Try adding a deployment of your application of choice into the repo and have it deployed through flux. You can define yaml
+files for your deployment within the [k8s](/k8s) directory following the pattern of what is already defined there.
 
