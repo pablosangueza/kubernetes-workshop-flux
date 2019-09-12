@@ -24,6 +24,8 @@ spec:
       app: demohttp-frontend
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: demohttp-frontend
     spec:
