@@ -9,6 +9,7 @@ This repo contains a basic example of how flux can be used to deploy kubernetes 
 1. cd into [scripts](/scripts) 
 1. Install tiller into your cluster by running `helm init --wait`.  Tiller is the server-side component that helm interacts with.
 1. execute the script for your OS
+    (before you execute the script modify `git@github.com:jwenz723/kubernetes-workshop-flux` to replace `jwenz723` with your github username)
     * windows: [flux-init.bat](/scripts/flux-init.bat)
     * linux/mac: [flux-init.sh](/scripts/flux-init.sh)
 1. Copy the ssh public key that is printed when the script finishes (should start with `ssh-rsa`)
