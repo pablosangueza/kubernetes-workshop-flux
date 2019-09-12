@@ -16,29 +16,6 @@ REPO_ROOT=$(git rev-parse --show-toplevel)
 REPO_URL=${1:-git@github.com:jwenz723/kubernetes-workshop-flux}
 GIT_PATH=${2:-k8s/}
 REPO_BRANCH=master
-TEMP=${REPO_ROOT}/temp
-
-rm -rf ${TEMP} && mkdir ${TEMP}
-
-cat <<EOF >> ${TEMP}/flux-values.yaml
-helmOperator:
-  create: true
-  createCRD: true
-  configureRepositories:
-    enable: true
-    volumeName: repositories-yaml
-    secretName: flux-helm-repositories
-    cacheVolumeName: repositories-cache
-    repositories:
-      - caFile: ""
-        cache: stable-index.yaml
-        certFile: ""
-        keyFile: ""
-        name: stable
-        password: ""
-        url: https://kubernetes-charts.storage.googleapis.com
-        username: ""
-EOF
 
 helm repo add fluxcd https://charts.fluxcd.io
 
@@ -50,7 +27,7 @@ helm upgrade -i flux --wait \
 --set git.pollInterval=15s \
 --set registry.pollInterval=15s \
 --namespace flux \
--f ${TEMP}/flux-values.yaml \
+-f flux-values.yaml \
 fluxcd/flux
 
 kubectl -n flux rollout status deployment/flux

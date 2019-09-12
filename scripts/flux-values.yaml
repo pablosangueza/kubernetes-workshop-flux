@@ -1,0 +1,17 @@
+helmOperator:
+  create: true
+  createCRD: true
+  configureRepositories:
+    enable: true
+    volumeName: repositories-yaml
+    secretName: flux-helm-repositories
+    cacheVolumeName: repositories-cache
+    repositories:
+      - caFile: ""
+        cache: stable-index.yaml
+        certFile: ""
+        keyFile: ""
+        name: stable
+        password: ""
+        url: https://kubernetes-charts.storage.googleapis.com
+        username: ""
