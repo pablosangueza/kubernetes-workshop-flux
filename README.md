@@ -39,6 +39,15 @@ make changes in this repo to make use of your newly created docker images.
 in the right column drop to a value less than 10s when your new pod is created)
 
 
+## Cluster cleanup
+
+1. To delete everything that was deployed by this flux installation run the script for your OS:
+
+    * windows: [flux-cleanup.bat](/scripts/flux-cleanup.bat)
+    * linux/mac: [flux-cleanup.sh](/scripts/flux-cleanup.sh)
+    
+1. (Optional) Go into github and delete the fork that you created
+
 ## Feeling adventurous?
 
 Try adding a deployment of your application of choice into the repo and have it deployed through flux. You can define yaml
