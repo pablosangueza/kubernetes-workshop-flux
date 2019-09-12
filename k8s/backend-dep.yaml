@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
       - name: demohttp-backend
-        image: jwenz723/demohttp-backend:flux-sync-6-gc1953e0-dirty
+        image: jwenz723/demohttp-backend:flux-sync-7-gad52945
         args:
         - "-addr=:8080"
         ports:
